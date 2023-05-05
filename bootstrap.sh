@@ -56,11 +56,11 @@ sed -i "s/gpu_operator_preinstalled_nvidia_software: true/gpu_operator_preinstal
 # disable nfs provisioner
 sed -i "s/k8s_nfs_client_provisioner: true/k8s_nfs_client_provisioner: false/g" config/group_vars/k8s-cluster.yml
 # use existing nfs export directory
-sed -i "s/k8s_nfs_mkdir: true/k8s_nfs_mkdir: false/g" config/group_vars/k8s-cluster.yml
+#sed -i "s/k8s_nfs_mkdir: true/k8s_nfs_mkdir: false/g" config/group_vars/k8s-cluster.yml
 # use existing nfs server
-sed -i "s/k8s_deploy_nfs_server: true/k8s_deploy_nfs_server: false/g" config/group_vars/k8s-cluster.yml
-sed -i "s/{{ groups\[\"kube-master\"\]\[0\] }}/${NFS_IP}/g" config/group_vars/k8s-cluster.yml
-sed -i "s/\/export\/deepops_nfs/${NFS_PATH}/g" config/group_vars/k8s-cluster.yml
+#sed -i "s/k8s_deploy_nfs_server: true/k8s_deploy_nfs_server: false/g" config/group_vars/k8s-cluster.yml
+#sed -i "s/{{ groups\[\"kube-master\"\]\[0\] }}/${NFS_IP}/g" config/group_vars/k8s-cluster.yml
+#sed -i 's:\/export\/deepops_nfs:${NFS_PATH}:g' config/group_vars/k8s-cluster.yml
 
 # deploy k8s
 ansible-playbook -l k8s-cluster playbooks/k8s-cluster.yml -K
