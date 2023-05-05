@@ -6,4 +6,4 @@
 ### 4. storageclass: nfs-provisioner(/export/deepops_nfs)
 ### 5. cni : calico
 ### 6. cri: containerd 1.5.8
-### 7. etc: virtualenv, gpu-operator(container level), k8s dashboard, helm
+### 7. etc: virtualenv, gpu-operator(container level), k8s dashboard, helm, nvidia driver(515.105.01)
