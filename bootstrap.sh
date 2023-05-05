@@ -9,6 +9,8 @@
 IP=
 NFS_IP=
 NFS_PATH=
+NGC_API_Key=
+DOCKER_EMAIL=
 
 # basic setup
 sudo sed -i 's/1/0/g' /etc/apt/apt.conf.d/20auto-upgrades
@@ -84,6 +86,7 @@ sed -i "s/#  - build-essential/  - build-essential/g" config/group_vars/all.yml
 
 # deploy k8s
 ansible-playbook -l k8s-cluster playbooks/k8s-cluster.yml -K
+sleep 30
 # deploy nfs provisioner manually
 #ansible-playbook playbooks/k8s-cluster/nfs-client-provisioner.yml
 # create administrative user and access token for dashboard
@@ -92,4 +95,4 @@ ansible-playbook -l k8s-cluster playbooks/k8s-cluster.yml -K
 ./scripts/k8s/deploy_monitoring.sh
 
 # enable to access ngc
-#kubectl create secret docker-registry nvcr.dgxkey --docker-server=nvcr.io --docker-username=\$oauthtoken --docker-email=<email> --docker-password=<NGC API Key>
+#kubectl create secret docker-registry nvcr.dgxkey --docker-server=nvcr.io --docker-username=\$oauthtoken --docker-email=${DOCKER_EMAIL} --docker-password=${NGC_API_Key}
