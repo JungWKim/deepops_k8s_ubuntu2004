@@ -44,6 +44,7 @@ echo "source <(kubeadm completion bash)" | sudo tee -a /root/.bashrc
 bash ./scripts/setup.sh
 
 # activate ansible
+source /opt/deepops/env/bin/activate
 source ${HOME}/.bashrc
 
 # edit the inventory
