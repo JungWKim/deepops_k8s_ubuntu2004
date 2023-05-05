@@ -6,4 +6,4 @@
 ### 4. storageclass: (optional)nfs-provisioner
 ### 5. cni : calico
 ### 6. cri : containerd 1.5.8
-### 7. etc : virtualenv, gpu-operator, k8s dashboard, helm, (optional)nvidia driver(515.105.01), prometheus&grafana, rsyslog
+### 7. etc : virtualenv, gpu-operator, k8s dashboard, helm, (optional)nvidia driver(515.105.01), prometheus&grafana, rsyslog, ngc accessible
