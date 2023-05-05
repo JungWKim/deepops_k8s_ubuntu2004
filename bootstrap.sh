@@ -7,6 +7,8 @@
 #!/bin/bash
 
 IP=
+NFS_IP=
+NFS_PATH=
 
 # basic setup
 sudo sed -i 's/1/0/g' /etc/apt/apt.conf.d/20auto-upgrades
@@ -37,16 +39,34 @@ echo "source <(kubeadm completion bash)" | sudo tee -a /root/.bashrc
 # Install software prerequisites and copy default configuration
 # this will create collections and config directory under deepops directory
 # kubespray submodules are located under deepops/submodules/kubespray
-./scripts/setup.sh
+bash ./scripts/setup.sh
 
-# to use ansible
+# activate ansible
 source ${HOME}/.bashrc
 
 # edit the inventory
-#config/inventory
+sed -i "s/#mgmt01/mgmt01/g" config/inventory
+sed -i "s/10.0.0.1/${IP}/g" config/inventory
+sed -i'' -r -e "/\[kube-node\]/a\mgmt01" config/inventory
 
-# edit configuration parametes
-#config/group_vars/*.yml
+# activate container level nvidia driver(default) then no reboot will be occurred
+# if below command is commented, host level nvidia driver 515.105.01 will be installed and reboot will also occur. Then you must rerun ansible-playbook one more time after reboot
+sed -i "s/gpu_operator_preinstalled_nvidia_software: true/gpu_operator_preinstalled_nvidia_software: false/g" config/group_vars/k8s-cluster.yml
+
+# disable nfs provisioner
+sed -i "s/k8s_nfs_client_provisioner: true/k8s_nfs_client_provisioner: false/g" config/group_vars/k8s-cluster.yml
+# use existing nfs export directory
+sed -i "s/k8s_nfs_mkdir: true/k8s_nfs_mkdir: false/g" config/group_vars/k8s-cluster.yml
+# use existing nfs server
+sed -i "s/k8s_deploy_nfs_server: true/k8s_deploy_nfs_server: false/g" config/group_vars/k8s-cluster.yml
+sed -i "s/{{ groups\[\"kube-master\"\]\[0\] }}/${NFS_IP}/g" config/group_vars/k8s-cluster.yml
+sed -i "s/\/export\/deepops_nfs/${NFS_PATH}/g" config/group_vars/k8s-cluster.yml
 
 # deploy k8s
-#ansible-playbook -l k8s-cluster playbooks/k8s-cluster.yml -K
+ansible-playbook -l k8s-cluster playbooks/k8s-cluster.yml -K
+# deploy nfs provisioner manually
+#ansible-playbook playbooks/k8s-cluster/nfs-client-provisioner.yml
+# create administrative user and access token for dashboard
+./scripts/k8s/deploy_dashboard_user.sh
+# deploy monitoring(prometheus and grafana)
+./scripts/k8s/deploy_monitoring.sh
