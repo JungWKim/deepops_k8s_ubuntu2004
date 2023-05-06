@@ -66,8 +66,8 @@ sed -i "s/kube_network_plugin: calico/kube_network_plugin: flannel/g" submodules
 # if below command is commented, host level nvidia driver 515.105.01 will be installed and reboot will also occur. Then you must rerun ansible-playbook one more time after reboot
 sed -i "s/gpu_operator_preinstalled_nvidia_software: true/gpu_operator_preinstalled_nvidia_software: false/g" config/group_vars/k8s-cluster.yml
 
-# force install NVIDIA driver even if GPU not detected
-#sed -i "s/nvidia_driver_force_install: false/nvidia_driver_force_install: true/g" config/group_vars/all.yml
+# force install NVIDIA driver or gpu operator even if GPU not detected
+sed -i "s/nvidia_driver_force_install: false/nvidia_driver_force_install: true/g" config/group_vars/all.yml
 
 # change cri from containerd to docker
 #sed -i "s/container_manager: containerd/container_manager: docker/g" config/group_vars/k8s-cluster.yml

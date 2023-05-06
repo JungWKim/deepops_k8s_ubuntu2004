@@ -5,5 +5,5 @@
 ### 3. k8s : 1.22.8 deployed by kubespray release 2.18
 ### 4. storageclass: (optional)nfs-provisioner
 ### 5. cni : calico
-### 6. cri : containerd 1.5.8
-### 7. etc : virtualenv, gpu-operator, k8s dashboard, helm, (optional)nvidia driver(515.105.01), prometheus&grafana, rsyslog, ngc accessible
+### 6. cri : containerd v1.5.8
+### 7. etc : virtualenv, gpu-operator, k8s dashboard, helm v3.7.1, (optional)nvidia driver v515.105.01, prometheus&grafana, rsyslog, ngc accessible
