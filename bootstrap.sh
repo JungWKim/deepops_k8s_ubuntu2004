@@ -60,7 +60,7 @@ sed -i "s/docker_version: '20.10'/docker_version: 'latest'/g" config/group_vars/
 sed -i "s/docker_containerd_version: 1.4.12/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
 
 # chagne k8s version
-sed -i "s/kube_version: v1.22.8/kube_version: v1.23.5/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yml
+sed -i "s/kube_version: v1.22.8/kube_version: v1.23.5/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
 
 # change cni from calico to flannel
 sed -i "s/kube_network_plugin: calico/kube_network_plugin: flannel/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
