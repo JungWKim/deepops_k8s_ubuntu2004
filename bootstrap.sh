@@ -93,7 +93,8 @@ sleep 30
 # create administrative user and access token for dashboard
 ./scripts/k8s/deploy_dashboard_user.sh
 # deploy monitoring(prometheus and grafana)
-./scripts/k8s/deploy_monitoring.sh
+# before deploying monitoring, you need a persistent storage such as nfs or ceph
+#./scripts/k8s/deploy_monitoring.sh
 
 # enable to access ngc
 #kubectl create secret docker-registry nvcr.dgxkey --docker-server=nvcr.io --docker-username=\$oauthtoken --docker-email=${DOCKER_EMAIL} --docker-password=${NGC_API_Key}
