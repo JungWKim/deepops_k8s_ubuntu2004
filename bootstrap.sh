@@ -56,7 +56,8 @@ sed -i'' -r -e "/\[kube-node\]/a\mgmt01" config/inventory
 # docker v20.10.11 / containerd v1.4.12
 sed -i "s/container_manager: containerd/container_manager: docker/g" config/group_vars/k8s-cluster.yml
 # install docker latest version
-#sed -i "s/docker_version: '20.10'/docker_version: 'latest'/g" config/group_vars/all.yml  
+sed -i "s/docker_version: '20.10'/docker_version: 'latest'/g" config/group_vars/all.yml  
+sed -i "s/docker_containerd_version: 1.4.12/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
 
 # change cni from calico to flannel
 sed -i "s/kube_network_plugin: calico/kube_network_plugin: flannel/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
