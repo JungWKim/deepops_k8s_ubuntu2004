@@ -52,6 +52,13 @@ sed -i "s/#mgmt01/mgmt01/g" config/inventory
 sed -i "s/10.0.0.1/${IP}/g" config/inventory
 sed -i'' -r -e "/\[kube-node\]/a\mgmt01" config/inventory
 
+# change container manager from containerd to docker
+# docker v20.10.11 / containerd v1.4.12
+sed -i "s/container_manager: containerd/container_manager: docker/g" config/group_vars/k8s-cluster.yml
+
+# change cni from calico to flannel
+sed -i "s/kube_network_plugin: calico/kube_network_plugin: flannel/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
+
 # disable changing hostnames of the hosts following as the inventory
 #sed -i "s/deepops_set_hostname: true/deepops_set_hostname: false/g" config/group_vars/all.yml
 
