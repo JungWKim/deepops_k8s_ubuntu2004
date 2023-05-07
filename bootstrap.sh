@@ -51,7 +51,7 @@ cd ~/deepops/submodules/kubespray
 git checkout release-2.20
 sed -i '29,44d' playbooks/k8s-cluster.yml
 
-cd deepops
+cd ~/deepops
 
 # edit the inventory
 sed -i "s/#mgmt01/mgmt01/g" config/inventory
