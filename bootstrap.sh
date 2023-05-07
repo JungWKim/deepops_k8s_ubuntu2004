@@ -59,14 +59,16 @@ sed -i "s/10.0.0.1/${IP}/g" config/inventory
 sed -i'' -r -e "/\[kube-node\]/a\mgmt01" config/inventory
 
 # change cri from containerd to docker
-# docker v20.10.11 / containerd v1.4.12
 sed -i "s/container_manager: containerd/container_manager: docker/g" config/group_vars/k8s-cluster.yml
-# install docker latest version
+# install docker and containerd latest version
+# default : docker v20.10.11 / containerd v1.4.12
 sed -i "s/docker_version: '20.10'/docker_version: 'latest'/g" config/group_vars/all.yml  
-sed -i "s/docker_containerd_version: 1.4.12/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
+sed -i "s/docker_containerd_version: 1.6.4/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
 
-# chagne k8s version
-sed -i "s/kube_version: v1.22.8/kube_version: v1.23.5/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
+# chagne k8s version when kubespray branch is at checkout e7508d7d2
+#sed -i "s/kube_version: v1.22.8/kube_version: v1.23.5/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
+# change docker containerd version when kubespray branch is at checkout e7508d7d2
+#sed -i "s/docker_containerd_version: 1.4.12/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
 
 # change cni from calico to flannel
 sed -i "s/kube_network_plugin: calico/kube_network_plugin: flannel/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
