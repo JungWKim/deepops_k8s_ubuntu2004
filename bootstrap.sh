@@ -49,7 +49,7 @@ source ${HOME}/.bashrc
 # change kubespray branch to release-2.20
 cd ~/deepops/submodules/kubespray
 git checkout release-2.20
-sed -i '29,44d' playbooks/k8s-cluster.yml
+sed -i '29,44d' ~/deepops/playbooks/k8s-cluster.yml
 
 cd ~/deepops
 
