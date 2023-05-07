@@ -30,7 +30,6 @@ sudo apt install -y python3-pip net-tools nfs-common whois xfsprogs
 # download deepops repository
 cd ~
 git clone https://github.com/NVIDIA/deepops.git -b release-22.04
-cd deepops
 
 # enable kubectl & kubeadm auto-completion
 echo "source <(kubectl completion bash)" >> ${HOME}/.bashrc
@@ -46,6 +45,13 @@ bash ./scripts/setup.sh
 # activate ansible
 source /opt/deepops/env/bin/activate
 source ${HOME}/.bashrc
+
+# change kubespray branch to release-2.20
+cd ~/deepops/submodules/kubespray
+git checkout release-2.20
+sed -i '29,44d' playbooks/k8s-cluster.yml
+
+cd deepops
 
 # edit the inventory
 sed -i "s/#mgmt01/mgmt01/g" config/inventory
