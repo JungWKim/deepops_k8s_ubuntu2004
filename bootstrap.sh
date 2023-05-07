@@ -74,7 +74,9 @@ sed -i "s/gpu_operator_preinstalled_nvidia_software: true/gpu_operator_preinstal
 # force install NVIDIA driver or gpu operator even if GPU not detected
 sed -i "s/nvidia_driver_force_install: false/nvidia_driver_force_install: true/g" config/group_vars/all.yml
 # change gpu operator image version from 1.10.0 to 1.11.1
-sed -i "s/gpu_operator_chart_version: \"1.10.0\"/gpu_operator_chart_version: \"1.11.1\"/g" roles/nvidia-gpu-operator/defaults/main.yml
+#sed -i "s/gpu_operator_chart_version: \"1.10.0\"/gpu_operator_chart_version: \"1.11.1\"/g" roles/nvidia-gpu-operator/defaults/main.yml
+# change gpu operator container runtime from containerd to docker
+sed -i "s/gpu_operator_default_runtime: \"containerd\"/gpu_operator_default_runtime: \"docker\"/g" roles/nvidia-gpu-operator/defaults/main.yml
 
 # disable nfs provisioner
 sed -i "s/k8s_nfs_client_provisioner: true/k8s_nfs_client_provisioner: false/g" config/group_vars/k8s-cluster.yml
