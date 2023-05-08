@@ -87,6 +87,12 @@ sed -i "s/gpu_operator_chart_version: \"1.10.0\"/gpu_operator_chart_version: \"1
 sed -i "s/gpu_operator_default_runtime: \"containerd\"/gpu_operator_default_runtime: \"docker\"/g" roles/nvidia-gpu-operator/defaults/main.yml
 # change gpu operator driver version from 510.47.03 to 515.105.01
 sed -i "s/gpu_operator_driver_version: \"510.47.03\"/gpu_operator_driver_version: \"515.105.01\"/g" roles/nvidia-gpu-operator/defaults/main.yml
+# disable persistence mode
+sed -i "s/nvidia_driver_persistence_mode_on: yes/nvidia_driver_persistence_mode_on: no/g" roles/galaxy/nvidia.nvidia_driver/defaults/main.yml
+# skip reboot while installing nvidia driver
+sed -i "s/nvidia_driver_skip_reboot: no/nvidia_driver_skip_reboot: yes/g" roles/galaxy/nvidia.nvidia_driver/defaults/main.yml
+# change nvidia driver version from 510 to 470
+sed -i "s/510/470/g" roles/galaxy/nvidia.nvidia_driver/defaults/main.yml
 
 # disable nfs provisioner
 sed -i "s/k8s_nfs_client_provisioner: true/k8s_nfs_client_provisioner: false/g" config/group_vars/k8s-cluster.yml
