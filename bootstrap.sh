@@ -92,7 +92,7 @@ sed -i "s/gpu_operator_driver_version: \"510.47.03\"/gpu_operator_driver_version
 # skip reboot while installing nvidia driver
 sed -i "s/nvidia_driver_skip_reboot: no/nvidia_driver_skip_reboot: yes/g" roles/galaxy/nvidia.nvidia_driver/defaults/main.yml
 # change nvidia driver version from 510 to 470
-sed -i "s/510/470/g" roles/galaxy/nvidia.nvidia_driver/defaults/main.yml
+#sed -i "s/510/470/g" roles/galaxy/nvidia.nvidia_driver/defaults/main.yml
 
 # disable nfs provisioner
 sed -i "s/k8s_nfs_client_provisioner: true/k8s_nfs_client_provisioner: false/g" config/group_vars/k8s-cluster.yml
