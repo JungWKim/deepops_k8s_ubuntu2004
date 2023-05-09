@@ -53,6 +53,7 @@ git checkout release-2.20
 sed -i '29,44d' ~/deepops/playbooks/k8s-cluster.yml
 
 # edit the inventory
+cd ~/deepops
 sed -i "s/#mgmt01/mgmt01/g" config/inventory
 sed -i "s/10.0.0.1/${IP}/g" config/inventory
 sed -i'' -r -e "/\[kube-node\]/a\mgmt01" config/inventory
