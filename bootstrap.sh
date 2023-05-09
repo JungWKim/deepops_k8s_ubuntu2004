@@ -40,6 +40,7 @@ echo "source <(kubeadm completion bash)" | sudo tee -a /root/.bashrc
 # Install software prerequisites and copy default configuration
 # this will create collections and config directory under deepops directory
 # kubespray submodules are located under deepops/submodules/kubespray
+cd ~/deepops
 bash ./scripts/setup.sh
 
 # activate ansible
@@ -50,8 +51,6 @@ source ${HOME}/.bashrc
 cd ~/deepops/submodules/kubespray
 git checkout release-2.20
 sed -i '29,44d' ~/deepops/playbooks/k8s-cluster.yml
-
-cd ~/deepops
 
 # edit the inventory
 sed -i "s/#mgmt01/mgmt01/g" config/inventory
