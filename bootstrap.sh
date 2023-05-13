@@ -48,9 +48,9 @@ source /opt/deepops/env/bin/activate
 source ${HOME}/.bashrc
 
 # change kubespray branch to release-2.20
-cd ~/deepops/submodules/kubespray
-git checkout release-2.20
-sed -i '29,44d' ~/deepops/playbooks/k8s-cluster.yml
+#cd ~/deepops/submodules/kubespray
+#git checkout release-2.20
+#sed -i '29,44d' ~/deepops/playbooks/k8s-cluster.yml
 
 # edit the inventory
 cd ~/deepops
@@ -63,12 +63,11 @@ sed -i "s/container_manager: containerd/container_manager: docker/g" config/grou
 # install docker and containerd latest version
 # default : docker v20.10.11 / containerd v1.4.12
 sed -i "s/docker_version: '20.10'/docker_version: 'latest'/g" config/group_vars/all.yml  
-sed -i "s/docker_containerd_version: 1.6.4/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
 
-# chagne k8s version when kubespray branch is at checkout e7508d7d2
-#sed -i "s/kube_version: v1.22.8/kube_version: v1.23.5/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
-# change docker containerd version when kubespray branch is at checkout e7508d7d2
-#sed -i "s/docker_containerd_version: 1.4.12/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
+# chagne k8s version
+sed -i "s/kube_version: v1.22.8/kube_version: v1.23.5/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
+# change docker containerd version
+sed -i "s/docker_containerd_version: 1.4.12/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
 
 # change cni from calico to flannel
 sed -i "s/kube_network_plugin: calico/kube_network_plugin: flannel/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
