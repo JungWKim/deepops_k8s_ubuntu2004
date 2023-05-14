@@ -60,14 +60,13 @@ sed -i'' -r -e "/\[kube-node\]/a\mgmt01" config/inventory
 
 # change cri from containerd to docker
 sed -i "s/container_manager: containerd/container_manager: docker/g" config/group_vars/k8s-cluster.yml
-# install docker and containerd latest version
-# default : docker v20.10.11 / containerd v1.4.12
+# change docker version(default 20.10.11)
 sed -i "s/docker_version: '20.10'/docker_version: 'latest'/g" config/group_vars/all.yml  
+# change docker containerd version(default 1.4.12)
+sed -i "s/docker_containerd_version: 1.4.12/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
 
 # chagne k8s version
-sed -i "s/kube_version: v1.22.8/kube_version: v1.23.5/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
-# change docker containerd version
-sed -i "s/docker_containerd_version: 1.4.12/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
+sed -i "s/kube_version: v1.23.7/kube_version: v1.24.1/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
 
 # change cni from calico to flannel
 sed -i "s/kube_network_plugin: calico/kube_network_plugin: flannel/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
@@ -86,10 +85,12 @@ sed -i "s/nvidia_driver_force_install: false/nvidia_driver_force_install: true/g
 sed -i "s/gpu_operator_default_runtime: \"containerd\"/gpu_operator_default_runtime: \"docker\"/g" roles/nvidia-gpu-operator/defaults/main.yml
 # change gpu operator driver version from 515.48.07 to 515.105.01
 sed -i "s/gpu_operator_driver_version: \"515.48.07\"/gpu_operator_driver_version: \"515.105.01\"/g" roles/nvidia-gpu-operator/defaults/main.yml
+# disable persistence mode
+sed -i "s/nvidia_driver_persistence_mode_on: yes/nvidia_driver_persistence_mode_on: no/g" roles/galaxy/nvidia.nvidia_driver/defaults/main.yml
 # skip reboot while installing nvidia driver
-#sed -i "s/nvidia_driver_skip_reboot: no/nvidia_driver_skip_reboot: yes/g" roles/galaxy/nvidia.nvidia_driver/defaults/main.yml
-# change nvidia driver version from 510 to 470
-#sed -i "s/510/470/g" roles/galaxy/nvidia.nvidia_driver/defaults/main.yml
+sed -i "s/nvidia_driver_skip_reboot: no/nvidia_driver_skip_reboot: yes/g" roles/galaxy/nvidia.nvidia_driver/defaults/main.yml
+# change nvidia driver version from 515 to 515
+#sed -i "s/515/515/g" roles/galaxy/nvidia.nvidia_driver/defaults/main.yml
 
 # disable nfs provisioner
 sed -i "s/k8s_nfs_client_provisioner: true/k8s_nfs_client_provisioner: false/g" config/group_vars/k8s-cluster.yml
