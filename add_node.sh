@@ -16,7 +16,3 @@ sudo systemctl disable ufw
 # install basic packages
 sudo apt update
 sudo apt install -y python3-pip net-tools nfs-common whois xfsprogs
-
-# download deepops repository
-cd ~
-git clone https://github.com/NVIDIA/deepops.git -b release-22.04
