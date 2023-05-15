@@ -58,12 +58,12 @@ sed -i "s/#mgmt01/mgmt01/g" config/inventory
 sed -i "s/10.0.0.1/${IP}/g" config/inventory
 sed -i'' -r -e "/\[kube-node\]/a\mgmt01" config/inventory
 
-# change cri from containerd to docker
-sed -i "s/container_manager: containerd/container_manager: docker/g" config/group_vars/k8s-cluster.yml
-# change docker version(default 20.10.11)
-sed -i "s/docker_version: '20.10'/docker_version: 'latest'/g" config/group_vars/all.yml  
-# change docker containerd version(default 1.4.12)
-sed -i "s/docker_containerd_version: 1.4.12/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
+# change cri from containerd to docker but it will not work
+#sed -i "s/container_manager: containerd/container_manager: docker/g" config/group_vars/k8s-cluster.yml
+# change docker version(default 20.10.11) but it will not work
+#sed -i "s/docker_version: '20.10'/docker_version: 'latest'/g" config/group_vars/all.yml  
+# change docker containerd version(default 1.4.12) but it will not work
+#sed -i "s/docker_containerd_version: 1.4.12/docker_containerd_version: latest/g" submodules/kubespray/roles/download/defaults/main.yml
 
 # chagne k8s version like this but it will not work
 #sed -i "s/kube_version: v1.23.7/kube_version: v1.24.1/g" submodules/kubespray/roles/kubespray-defaults/defaults/main.yaml
