@@ -2,7 +2,7 @@
 ### 1. os : ubuntu 20.04
 ### 1. deepops : release-22.04.2
 ### 2. ansible : 2.11.12
-### 3. k8s : 1.23.x
+### 3. k8s : 1.23.5
 ### 4. storageclass: none
 ### 5. cni : flannel
 ### 6. cri : docker latest
