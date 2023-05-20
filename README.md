@@ -7,6 +7,3 @@
 ### 5. cni : calico
 ### 6. cri : docker latest
 ### 7. etc : virtualenv, gpu-operator v1.11.1, k8s dashboard v2.0.3, helm v3.7.1, (optional)nvidia driver v515.105.01, (optional)prometheus&grafana, (optional)rsyslog, (optional) nfs-provisioner
-#
-# Refence site for developers
-### https://github.com/NVIDIA/deepops/blob/22.08/docs/k8s-cluster/deep-learning-examples.md
