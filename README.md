@@ -1,5 +1,5 @@
 # Summary
-### os : ubuntu 20.04
+### OS : ubuntu 20.04
 ### deepops : 22.04.2
 ### ansible : 2.11.12
 ### k8s : 1.23.5
